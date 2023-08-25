@@ -1,0 +1,31 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/*.db'
+      - 'data/metadata.yml'
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Repository Checkout
+      uses: actions/checkout@v3.5.3
+    - name: Install just
+      uses: extractions/setup-just@v1
+    - name: Setup Python
+      uses: actions/setup-python@v4.7.0
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    - name: Install flyctl
+      uses: superfly/flyctl-actions/setup-flyctl@1.4
+    - name: Deploy Datasette
+      run: "just --justfile data/Justfile publish"
+      env:
+        FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

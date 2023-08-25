@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "leno"
+version = "0.1.0"
+description = "Personal data aggregator"
+authors = ["Cade Ekblad-Frank <cade@e-f.me>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+leno = 'leno.cli:app'
+
+[tool.poetry.dependencies]
+python = "^3.11"
+typer = {extras = ["all"], version = "^0.9.0"}
+httpx = "^0.24.1"
+beautifulsoup4 = "^4.12.2"
+sqlite-utils = "^3.35"
+typing-extensions = "^4.7.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.1.0"
+pytest = "^7.4.0"
+black = "^23.7.0"
+ruff = "^0.0.278"
+mypy = "^1.4.1"
+devtools = "^0.11.0"
+pygments = "^2.15.1"
+sphinx = "^7.1.1"
+myst-parser = "^2.0.0"
+sphinx-press-theme = "^0.8.0"
+sphinx-copybutton = "^0.5.2"
+sphinx-autodoc-typehints = "^1.24.0"
+sphinx-autobuild = "^2021.3.14"
+types-beautifulsoup4 = "^4.12.0.5"
+pytest-mock = "^3.11.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# https://beta.ruff.rs/docs/rules/
+select = ["E", "F", "I"]
