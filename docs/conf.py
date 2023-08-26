@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Assemblage"
+project = "Leno"
 copyright = "2023, Cade Ekblad-Frank"
 author = "Cade Ekblad-Frank"
 

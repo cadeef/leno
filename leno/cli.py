@@ -1,3 +1,4 @@
+import importlib.metadata
 from enum import Enum
 from pathlib import Path
 from typing import Annotated, Optional
@@ -15,11 +16,23 @@ INSTANCE_URL = "http://127.0.0.1:8001"
 app = typer.Typer()
 
 
+def version_callback(value: bool):
+    if value:
+        print(importlib.metadata.version(APP_NAME))
+        raise typer.Exit()
+
+
 @app.callback()
 def main(
     ctx: typer.Context,
-    datasette_url: str = typer.Option(default=INSTANCE_URL, envvar="LENO_URL"),
-    token: str = typer.Option(default="", envvar="LENO_TOKEN"),
+    datasette_url: Annotated[
+        str, typer.Option("--datasette-url", "-u", envvar="LENO_URL")
+    ] = INSTANCE_URL,
+    token: Annotated[str, typer.Option("--token", "-t", envvar="LENO_TOKEN")] = "",
+    version: Annotated[
+        Optional[bool],
+        typer.Option("--version", "-V", callback=version_callback, is_eager=True),
+    ] = None,
 ) -> None:
     ctx.ensure_object(dict)
 

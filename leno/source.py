@@ -1,7 +1,8 @@
 import configparser
 import json
 import os
-import venv
+
+# import venv
 from contextlib import contextmanager
 from pathlib import Path
 from shutil import copy2
@@ -29,7 +30,13 @@ class Source:
 
     def install(self) -> bool:
         if not self.venv.is_dir():
-            venv.create(self.venv, with_pip=True)
+            # FIXME: venv.create is broken somehow in 3.11.5...
+            # venv.create(self.venv, with_pip=True)
+            run(
+                ["python", "-m", "venv", self.venv],
+                capture_output=True,
+                check=True,
+            )
 
         pip = self.venv / "bin/pip"
         for pkg in self.packages:
@@ -151,7 +158,7 @@ class GithubSource(Source):
 
         with auth_file(
             self.auth_file_path,
-            github_personal_token=os.environ["GITHUB_TOKEN"],
+            github_personal_token=os.environ["LENO_GITHUB_TOKEN"],
         ):
             # Fetch repos associated with user
             run(
@@ -218,8 +225,8 @@ class MastodonSource(Source):
 
         with auth_file(
             self.auth_file_path,
-            mastodon_domain=os.environ["MASTODON_DOMAIN"],
-            mastodon_access_token=os.environ["MASTODON_ACCESS_TOKEN"],
+            mastodon_domain=os.environ["LENO_MASTODON_DOMAIN"],
+            mastodon_access_token=os.environ["LENO_MASTODON_ACCESS_TOKEN"],
         ):
             for data_point in data_points:
                 run(
@@ -275,9 +282,9 @@ class PocketSource(Source):
     def update(self) -> bool:
         with auth_file(
             self.auth_file_path,
-            pocket_consumer_key=os.environ["POCKET_CONSUMER_KEY"],
-            pocket_username=os.environ["POCKET_USERNAME"],
-            pocket_access_token=os.environ["POCKET_ACCESS_TOKEN"],
+            pocket_consumer_key=os.environ["LENO_POCKET_CONSUMER_KEY"],
+            pocket_username=os.environ["LENO_POCKET_USERNAME"],
+            pocket_access_token=os.environ["LENO_POCKET_ACCESS_TOKEN"],
         ):
             run(
                 [

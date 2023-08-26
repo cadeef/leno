@@ -1,4 +1,5 @@
 
+# Load environment variables using 1password-cli
 opornone := if `hash op &> /dev/null && echo found` == "found" { "op run --env-file .env --" } else { "" }
 
 # List commands
@@ -41,7 +42,7 @@ publish:
   # Build package
   poetry build
   # Publish package
-  {{ opornone }} poetry publish
+  {{opornone}} poetry publish
 
 docker_socket := `docker context inspect --format '{{.Endpoints.docker.Host}}'`
 docker_status := `limactl ls --json | jq -r 'select(.name == "docker") | .status'`

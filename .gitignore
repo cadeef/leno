@@ -1,15 +1,5 @@
-# Local exports (Healthkit, Google Takeout)
-data/exports
-# Don't accidentally commit sensitive data for now
-data/healthkit.db
-data/photos.db
-data/firefox.db*
-# Don't commit auth files
-data/auth_*.json
-# Ignore serve hack to make datasette serve --reload work
-data/serve
-# Ignore deploy scratch files
-data/deploy
+# Ignore my notes
+notes.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
