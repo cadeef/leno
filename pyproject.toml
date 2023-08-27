@@ -24,14 +24,17 @@ ruff = "^0.0.278"
 mypy = "^1.4.1"
 devtools = "^0.11.0"
 pygments = "^2.15.1"
+types-beautifulsoup4 = "^4.12.0.5"
+pytest-mock = "^3.11.1"
+
+[tool.poetry.group.docs.dependencies]
+pygments = "^2.15.1"
 sphinx = "^7.1.1"
 myst-parser = "^2.0.0"
 sphinx-press-theme = "^0.8.0"
 sphinx-copybutton = "^0.5.2"
 sphinx-autodoc-typehints = "^1.24.0"
 sphinx-autobuild = "^2021.3.14"
-types-beautifulsoup4 = "^4.12.0.5"
-pytest-mock = "^3.11.1"
 
 [build-system]
 requires = ["poetry-core"]

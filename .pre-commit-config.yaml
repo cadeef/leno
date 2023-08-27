@@ -27,7 +27,7 @@ repos:
     rev: 1.6.0
     hooks:
       - id: poetry-check
-      - id: poetry-lock
+      # - id: poetry-lock
   - repo: https://github.com/tcort/markdown-link-check
     rev: v3.11.2
     hooks:
