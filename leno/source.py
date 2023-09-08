@@ -151,7 +151,7 @@ class GithubSource(Source):
         repos = [
             "cadeef/cade-task",
             "cadeef/.files",
-            "cadeef/cade.pro",
+            "cadeef/firefox-to-sqlite",
             "cadeef/leno",
         ]
         data_points = ["commits", "releases"]

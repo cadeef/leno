@@ -5,6 +5,10 @@ description = "Personal data aggregator"
 authors = ["Cade Ekblad-Frank <cade@e-f.me>"]
 readme = "README.md"
 
+[tool.poetry.urls]
+Repository = "https://github.com/cadeef/leno"
+Documentation = "https://leno.cade.pro"
+
 [tool.poetry.scripts]
 leno = 'leno.cli:app'
 
